@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # Assessment Platform Backend & Frontend
+  security-platform:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./database:/app/database
+      - ./uploads:/app/uploads
+      - ./reports:/app/reports
+    environment:
+      - DEFAULT_TARGET_URL=http://crapi-web:8888
+
+  # Optional local crAPI container integration
+  # (Can also be launched using official crAPI docker-compose)
+
